@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "249862802879",
+    "project_id": "react-native-food-d905a",
+    "storage_bucket": "react-native-food-d905a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249862802879:android:21aa0cef3801f8c68da50a",
+        "android_client_info": {
+          "package_name": "com.mynew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249862802879-p10u32ondtvcd2p418vlq52n626nfdto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe_Sx2Ld7lNXBpUzfholfBOcVSY2bH4nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249862802879-p10u32ondtvcd2p418vlq52n626nfdto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
