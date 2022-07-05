@@ -9,7 +9,8 @@ import {
 import {
     DrawerContentScrollView,
     DrawerItemList,
-    DrawerItem
+    DrawerItem,
+    
 } from '@react-navigation/drawer';
 import { useSelector,useDispatch } from 'react-redux';
 import { COLORS } from '../../constants';
@@ -19,17 +20,26 @@ import {
     Button
 } from 'react-native-elements';
 import { logedOut } from '../../store/reducers/user/userAction';
+import ActivityIndicator from '../../components/spinner/ActivityIndicator';
 
 export default function DrawerContent(props) {
 
     const dispatch = useDispatch();
 
-    function signOutHandleChange() {
-        console.log('signOutHandleChange');
+    const [isLoading,setLoading] = useState(false);
+
+    const signOutHandleChange = ()=> {
+
+        setLoading(true); 
+
+        setTimeout(() => {
+
+            setLoading(false); 
+
+        }, 2000);
+
         dispatch(logedOut());
 
-        // props.navigation.navigate('OnBoardingScreen');
-    
     }
 
     return (
@@ -111,6 +121,12 @@ export default function DrawerContent(props) {
                     )}
                 />
 
+                    {
+                        isLoading ? 
+                            <ActivityIndicator size="large" color="#282534"  />
+                        : null
+                    }
+
                 <View style={{flex:1,borderTopWidth:3,borderTopColor:COLORS.gray5}}>
                     <Text style={styles.preferences}>Preferences</Text>
 
@@ -125,16 +141,15 @@ export default function DrawerContent(props) {
                     </View>
                 </View>
 
+                {/* <TouchableOpacity
+                style={{flex:2,backgroundColor:'red', width:'100%'}}
+                onPress={signOutHandleChange } 
                 
+            >  */}
+            
+            {/* </TouchableOpacity> */}
             </DrawerContentScrollView>
-
-            <TouchableOpacity
-                onPress={signOutHandleChange} 
-            >
-            {/* <View
-            onPress={signOutHandleChange}
-            > */}
-                <DrawerItem 
+            <DrawerItem 
                         label= 'Sign Out'
                         icon={({color,size})=>(
                             <Icon 
@@ -144,10 +159,10 @@ export default function DrawerContent(props) {
                                 name='logout-variant'
                             />
                         )}
-                         
+                        onPress={signOutHandleChange } 
+                    
                 />
-                {/* </View> */}
-            </TouchableOpacity>
+            
         </View>
     )
 }

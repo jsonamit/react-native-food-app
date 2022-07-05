@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Text,StyleSheet,View,TextInput,ScrollView,Alert,ActivityIndicator} from 'react-native';
+import { Text,StyleSheet,View,TextInput,ScrollView,Alert} from 'react-native';
 import { useSelector,useDispatch } from 'react-redux';
 import { Icon,Button,SocialIcon } from 'react-native-elements';
 import { getUniqueId, getDevice,getDeviceName,getUserAgent,getDeviceType } from 'react-native-device-info';
@@ -8,28 +8,13 @@ import { logedIn } from '../../../store/reducers/user/userAction';
 import { setDeviceInfo } from '../../../store/reducers/deviceInfo/deviceInfoAction';
 import Header from '../../../components/header/Header';
 import { userData } from '../../../assets/Data';
+import ActivityIndicator from '../../../components/spinner/ActivityIndicator';
 
 const LoginScreen = ({ navigation }) => {
 
-    // const stateData = useSelector((state)=>{
-    //     return state.user;
-    // })
-
     useEffect(()=>{
-
-        // if(stateData.isLoggedIn == false) {
-
-        //     // do nothing
-      
-        // } else {
-            
-        //     navigation.navigate('App');
-    
-        // }
     
     },[])
-
-   
 
     const dispatch = useDispatch();
 
@@ -57,14 +42,15 @@ const LoginScreen = ({ navigation }) => {
       
         if(found != undefined) {
 
-            dispatch(logedIn(found));
+            setTimeout(() => {
+                dispatch(logedIn(found));
 
-            setLoading(false); 
+                dispatch(setDeviceInfo(deviceData));
 
-            dispatch(setDeviceInfo(deviceData));
+                setLoading(false); 
 
-            // navigation.navigate('App');
-            navigation.replace('App')
+                navigation.replace('App');
+            }, 1000);
 
         } else {
 
@@ -143,11 +129,10 @@ const LoginScreen = ({ navigation }) => {
                     />
                     {
                         isLoading ? 
-                            <ActivityIndicator size="small" color="#0000ff" />
+                            <ActivityIndicator size="large" color="#282534"  />
                         : null
                     }
                 </View>
-                {/* navigation.navigate('DrawerNavigator'); */}
 
                 <View style={{marginVertical:15,justifyContent:'center',alignItems:'center'}}>
                     <Text style={{textDecorationLine:'underline'}}>Forgot Password ?</Text>
